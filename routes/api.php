@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/getToken', [EquidadController::class, 'getToken']);
 Route::post('/cotizar', [EquidadController::class, 'cotizar']);
+Route::get('/ciudadE/{areaCode}', [EquidadController::class, 'mainCiudadEquidad']);
