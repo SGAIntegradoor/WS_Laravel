@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Equidad\EquidadController;
+use App\Http\Controllers\ramos\autos\Equidad\EquidadController;
+use App\Http\Controllers\ramos\salud\Bolivar\BolivarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +20,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/getToken', [EquidadController::class, 'getToken']);
-Route::post('/cotizar', [EquidadController::class, 'cotizar']);
-Route::get('/ciudadE/{areaCode}', [EquidadController::class, 'mainCiudadEquidad']);
+/*==========================================================
+============= Rutas cotiza autos con Equidad ===============
+===========================================================*/
+Route::prefix('autos')->group(function () {
+    Route::prefix('equidad')->group(function () {
+        Route::get('/getToken', [EquidadController::class, 'getToken']);
+        Route::post('/cotizar', [EquidadController::class, 'cotizar']);
+        Route::get('/ciudadE/{areaCode}', [EquidadController::class, 'mainCiudadEquidad']);
+    });
+});
+
+/*==========================================================
+============= Rutas cotiza salud con Bolivar ===============
+===========================================================*/
+Route::prefix('salud')->group(function () {
+    Route::prefix('bolivar')->group(function () {
+        Route::get('/', [BolivarController::class, 'index']);
+        Route::post('/cotizar', [BolivarController::class, 'cotizar']);
+    });
+});

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Equidad;
+namespace App\Http\Controllers\ramos\autos\Equidad;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
